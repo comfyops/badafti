@@ -1,3 +1,6 @@
+// sudo apt-get install graphviz
+// terraform graph | dot -Tsvg > graph.svg
+
 terraform {
   required_providers {
     docker = {

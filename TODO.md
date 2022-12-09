@@ -1,0 +1,13 @@
+- badafti init
+  - env allow list
+  - varaiable to ask for tf
+  - buildspec...
+    - require (aws)
+    - timeout
+- badafti export modules
+  - What modules need accepting
+- badafti validate (json/yaml scheme)
+- badafti build all|step|--var x=1
+  - .badatfti.env
+- Added modules by devops above (like ecr repo)
+- modules by env (vercel, aws, local etc)
