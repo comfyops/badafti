@@ -1,0 +1,43 @@
+{
+    "$ref": "#/definitions/OpsMainSchema",
+    "definitions": {
+        "OpsMainSchema": {
+            "type": "object",
+            "properties": {
+                "prop1": {
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "properties": {
+                                "check": {
+                                    "type": "string",
+                                    "description": "Nodejs cheker"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "check",
+                                "value"
+                            ],
+                            "additionalProperties": false
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "prop2": {
+                    "$ref": "#/definitions/OpsMainSchema/properties/prop1"
+                }
+            },
+            "required": [
+                "prop1",
+                "prop2"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

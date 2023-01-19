@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import verify from "./mainScheme";
+import verify from "./parse";
 
 export default function preProcessFile(path: string) {
   let data = readFileSync(path, { encoding: "utf-8" });

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=./schema.json
+
+prop1: 
+  check: "123"
+  value: "123"
+prop2: "123"
