@@ -2,13 +2,15 @@
   "name": "badafti",
   "version": "1.0.0",
   "description": "Better communication between Dev and Ops",
-  "main": "index.js",
   "repository": "https://github.com/comfyops/badafti.git",
   "author": "Yoni Water Man <yonixw@gmail.com>",
   "license": "MIT",
   "private": false,
+  "main": "./dist/bin",
+  "bin": {
+    "badafti": "./dist/bin.js"
+  },
   "scripts": {
-    "start": "echo 1",
     "tsc": "tsc"
   },
   "dependencies": {
