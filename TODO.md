@@ -14,3 +14,5 @@
 - modules by env (vercel, aws, local etc)
 
 - close loop with get logs, metrics, alerts, debug session and debug networking
+
+- git clone
