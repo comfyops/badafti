@@ -1,0 +1,11 @@
+
+jobs:
+  step:
+    name: ""
+    env:
+      - "X"
+      - "Y":
+          default: "NO_ENV"
+      - "Z"
+    volumes:
+    # files and volumes...

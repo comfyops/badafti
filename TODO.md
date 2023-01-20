@@ -19,8 +19,13 @@
 - git clone
 
 commands:
-validate + --watch
-gen-schema
+(dev_|ops_)schema-validate + --watch ---> will help with many built in cloud flavours or docker stuff (big schema)
+(dev_|ops_)schema-gen
+
+badafti ops validate  -> User uses what's allowed (default is *.yml)
+badafti ops gen_pipeline (convert tasks/dockers into real pipeline yamls...)
+
+
 
 // also from https://dev.azure.com/yonixw/_git/DevopsHeavenBaseIAC?path=/TODO_README:
 allow 2 steps terraform (ecr before ecs )
@@ -29,6 +34,7 @@ Security maybe only:
     no docker in docker
       also no root..
     no run script (access to env)
+    auto hide all env: whitelist, blacklist, secrets?
     no IAM env access so
         "build_docker" - build image
         "run_docker" run in image with approved_env
