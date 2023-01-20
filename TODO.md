@@ -26,6 +26,8 @@ badafti ops validate  -> User uses what's allowed (default is *.yml)
 badafti ops gen_pipeline (convert tasks/dockers into real pipeline yamls...)
 
 
+allow import (with ENV creds) so ops have centrelized policy like all alowed build dockers/steps
+  security : combine_stricted: [....]
 
 // also from https://dev.azure.com/yonixw/_git/DevopsHeavenBaseIAC?path=/TODO_README:
 allow 2 steps terraform (ecr before ecs )
