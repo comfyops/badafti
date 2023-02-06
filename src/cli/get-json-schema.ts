@@ -17,6 +17,7 @@ if (process.argv.length > 4) {
   savePath = process.argv[4];
 }
 savePath = path.resolve(savePath);
+if (!savePath.endsWith(".json")) savePath += ".json";
 
 if (process.argv.length < 3 || process.argv.length > 5) {
   console.log(
@@ -25,7 +26,9 @@ if (process.argv.length < 3 || process.argv.length > 5) {
   process.exit(1);
 }
 
-console.log(`Importing ${propertyName} from: '${objPath}'`);
+console.log(
+  `Importing ${propertyName} from: '${objPath}'\n And saving to '${savePath}'`
+);
 
 import(objPath).then((obj) => {
   let schemaObj = obj;
