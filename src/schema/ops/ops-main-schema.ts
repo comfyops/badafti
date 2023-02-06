@@ -19,9 +19,6 @@ const JSEval = z.union([JSCodeEval, JSScriptEval]);
 
 const StringConstant = z.string();
 
-/**
- * Does not change the value, only validate if ok.
- */
 const StringValidate = z.object({
   check: JSEval,
   value: z.string(),

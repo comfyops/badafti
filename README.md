@@ -16,7 +16,7 @@ The name includes the processes that are needed to be included in the DevOps pip
 
 ## Architecture
 
-![arch image](./docs/arch.drawio.png)
+![arch image](./docs-files/arch.drawio.png)
 
 ## Example
 
