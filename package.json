@@ -11,7 +11,9 @@
     "badafti": "./dist/bin.js"
   },
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "schema:gen": "ts-node src/cli/get-json-schema.ts",
+    "schema:gen:main": "yarn schema:gen src/schema/ops/ops-main-schema OpsMainSchema"
   },
   "dependencies": {
     "@types/node": "^18.11.18",
@@ -19,5 +21,8 @@
     "yaml": "^2.2.1",
     "zod": "^3.20.2",
     "zod-to-json-schema": "^3.20.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
   }
 }
