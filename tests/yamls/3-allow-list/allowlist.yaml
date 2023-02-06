@@ -1,0 +1,85 @@
+step_groups:
+  react_init:
+    - "steps[]"
+    - "load with creds"
+    - "npm install"
+    - "clear creds in all files..."
+
+steps:
+   native_scan:
+      images: xxxx/node:[18|16|17]
+      image_reuse: true # && job && parallel_group
+      allowed_env:
+        - regex: "aws_*"
+        - ""
+      cmd: "xyz"
+
+jobs:
+  Job1:
+    depends_on: 
+      - "job_id" # if not in the same parallel group
+    steps_id: # can be populated at runtime
+      - "x"
+
+parallel_groups: # each group run in sequncial
+  - jobs_group_A: # can be populated at runtime
+    - 1
+    - 2
+
+
+
+
+flow_steps:
+  before_all_???:
+  - "Get Secret X"
+
+  before_each:
+    - "Clean secrets from shared ENV"
+
+  after_each:
+    - "Check time left in pipeline? Compare with last time?"
+
+  after_all_steps:
+    - "Clean env"
+  
+  after_all_jobs: # jobs are multi steps, and can work in parallel
+    - "Clean env"
+
+  after_all_parallel_group: # jobs are multi steps, and can work in parallel
+    - "Clean env"
+
+
+TerraformBOM:
+ "apigw_lambda":
+    dev_selector: "main_lambda" # so dev will not get from flavour he doesn't want...
+    count: 1
+    flavour:
+      - "docker" # disables other (1 of many)
+      - "lowcost" # make variable required
+    dev_overwrites:
+      - throttle:
+          validate: "utils.StrictInt(x) && (x>0) && (x<100)"
+          default: 100
+    ops_overwrites:
+      X: "Y"
+
+flowX: 
+  on: "trigger"
+
+
+
+
+defaults:
+  net: false
+  env: false
+  secret: false
+
+  mask_logs: true
+  report_logs: "http://"
+
+  report_status: "http://"
+  allowed_paths: # globs
+    - "/etc/localtime"
+    - js_inline: "os.pwd() + '/unsafe_artifact/*'" # Don't run anything from it with secrets!
+    - "xxx":
+        readonly: true

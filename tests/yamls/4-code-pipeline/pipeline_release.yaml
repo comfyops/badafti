@@ -1,0 +1,32 @@
+# See more at
+# https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-example
+
+## will prefetch dockers at the start and cache them? concurrent with tasks?
+##    group tasks in same docker
+
+schema: 0.1 
+  # Will force correct schema
+  # Across entire pipeline (from env?)
+
+condition: # for this file...
+  - "env.ENV !=== 'PROD'"
+  - "util.run('./check',x,y,env.Z)"
+
+tasks: # Config must equal ops side
+  - tf_run@0.1 # no config = built in
+  - azdevops:Wait@0.1
+  - run-terraform: 
+    type: docker # image: will default to this?
+    name: docker.io/cloudops/terraform-strict-builder:latest # latest must be explicit?
+    # stric = no-net? no-root?
+    cmd: "...." 
+    env:
+      - "MODE=RUN-TERRAFORM"
+  - plan-terraform:
+      inherit: run-terraform
+      cmd: "..."
+  - wait:
+     task: "file:hash or url:hash (url only after accepted in ops)" # instead of type+name
+
+# export env -> write to a file shared in env...
+#     just let user mount a shared file? No! for safty, make it json+node o.w. ALLOW=$SECRET trick 
