@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./schema.json
 
 prop1: 
+  value: "123"
   check: 
     js_inline: "some_code"
-  value: "123"
 prop2: "123"

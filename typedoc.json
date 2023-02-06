@@ -3,5 +3,9 @@
     "entryPoints": ["src/schema/ops/ops-main-schema.ts"],
     "out": "docs",
     "includeVersion": true,
-    "cleanOutputDir": true
+    "cleanOutputDir": true,
+    "categorizeByGroup": true,
+    "disableSources": false,
+    "pretty": true,
+    "searchInComments": true
 }
