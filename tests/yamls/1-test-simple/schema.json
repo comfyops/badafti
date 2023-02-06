@@ -14,12 +14,13 @@
                                         {
                                             "type": "object",
                                             "properties": {
-                                                "js_inline": {
-                                                    "type": "string"
-                                                },
                                                 "__type": {
                                                     "type": "string",
+                                                    "const": "__JSCodeEval",
                                                     "default": "__JSCodeEval"
+                                                },
+                                                "js_inline": {
+                                                    "type": "string"
                                                 }
                                             },
                                             "required": [

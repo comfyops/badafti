@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+export function __type(name: string) {
+  return {
+    __type: z
+      .literal("__" + name)
+      .optional()
+      .default("__" + name),
+  };
+}
+
 /**
  * This is not a \@tag. Nor is this an \{\@inlineTag\}
  *
@@ -20,15 +29,16 @@ import { z } from "zod";
  * 2. sss
  *     * dsads
  *
- * see {@link _JSCodeEval}
+ * see {@link __type}
  */
-export const inner = () => ({
-  js_inline: z.string(),
-  __type: z.string().optional().default("__JSCodeEval"),
-});
-export const JSCodeEval = z.object(inner(), { description: "Run JS code" });
-export type JSCodeEval = z.infer<typeof JSCodeEval>;
-export type _JSCodeEval = typeof JSCodeEval;
+
+export const JSCodeEval = z.object(
+  {
+    ...__type("JSCodeEval"),
+    js_inline: z.string(),
+  },
+  { description: "Run JS code" }
+);
 
 const JSScriptEval = z.object(
   {
