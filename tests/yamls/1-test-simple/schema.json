@@ -10,8 +10,43 @@
                             "type": "object",
                             "properties": {
                                 "check": {
-                                    "type": "string",
-                                    "description": "Nodejs cheker"
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "js_inline": {
+                                                    "type": "string"
+                                                },
+                                                "__type": {
+                                                    "type": "string",
+                                                    "default": "__JSCodeEval"
+                                                }
+                                            },
+                                            "required": [
+                                                "js_inline"
+                                            ],
+                                            "additionalProperties": false,
+                                            "description": "Run JS code"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "js_file": {
+                                                    "type": "string",
+                                                    "description": "Nodejs process"
+                                                },
+                                                "args": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "js_file",
+                                                "args"
+                                            ],
+                                            "additionalProperties": false,
+                                            "description": "Run JS from file (.js)"
+                                        }
+                                    ]
                                 },
                                 "value": {
                                     "type": "string"
@@ -25,6 +60,24 @@
                         },
                         {
                             "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "regex": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "regex"
+                            ],
+                            "additionalProperties": false
                         }
                     ]
                 },

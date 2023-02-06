@@ -2,4 +2,6 @@
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": ["src/schema/ops/ops-main-schema.ts"],
     "out": "docs",
+    "includeVersion": true,
+    "cleanOutputDir": true
 }

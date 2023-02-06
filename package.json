@@ -12,6 +12,7 @@
   },
   "scripts": {
     "tsc": "tsc",
+    "ts-node": "ts-node",
     "schema:gen": "ts-node src/cli/get-json-schema.ts",
     "schema:gen:main": "yarn schema:gen src/schema/ops/ops-main-schema OpsMainSchema",
     "docs": "typedoc --options typedoc.json"

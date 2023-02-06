@@ -1,11 +1,34 @@
 import { z } from "zod";
 
-const JSCodeEval = z.object(
-  {
-    js_inline: z.string(),
-  },
-  { description: "Run JS code" }
-);
+/**
+ * This is not a \@tag. Nor is this an \{\@inlineTag\}
+ *
+ * It is possible to escape the end of a comment:
+ * ```ts
+ * /**
+ *  * docs for `example()`
+ *  *\/
+ * function example(): void
+ * ```
+ *
+ * * 1
+ * * 2
+ *
+ * so:
+ *
+ * 1. sss
+ * 2. sss
+ *     * dsads
+ *
+ * see {@link _JSCodeEval}
+ */
+export const inner = () => ({
+  js_inline: z.string(),
+  __type: z.string().optional().default("__JSCodeEval"),
+});
+export const JSCodeEval = z.object(inner(), { description: "Run JS code" });
+export type JSCodeEval = z.infer<typeof JSCodeEval>;
+export type _JSCodeEval = typeof JSCodeEval;
 
 const JSScriptEval = z.object(
   {
@@ -47,7 +70,7 @@ const ComparbleString = z.union([
 type ComparbleString = z.infer<typeof JSEval>;
 
 export const OpsMainSchema = z.object({
-  prop1: JSEval,
-  prop2: JSEval,
+  prop1: ComparbleString,
+  prop2: ComparbleString,
 });
 export type OpsMainSchema = z.infer<typeof OpsMainSchema>;

@@ -6,3 +6,5 @@ export default function preProcessFile(path: string) {
   let result = verify(data);
   console.log(result);
 }
+
+preProcessFile("tests/yamls/1-test-simple/main.yaml");
