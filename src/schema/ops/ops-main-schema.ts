@@ -17,16 +17,19 @@ function exactMatch<A extends C, B extends A, C = B>() {
 }
 
 exactMatch<JSCodeEval, ReturnType<typeof JSCodeEval.parse>>();
-export type JSCodeEval = { __type: string | "JSCodeEval"; truthy: string };
+export type JSCodeEval = {
+  __type: string | "JSCodeEval";
+
+  /**
+   * @description `truthy` A string expression that will be evaluated
+   *     and checked if [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
+   */
+  truthy: string;
+};
 /** @ignore */
-export const JSCodeEval = z.object(
+const JSCodeEval = z.object(
   {
     ...__type("JSCodeEval"),
-
-    /**
-     * @description `truthy` A string expression that will be evaluated
-     *     and checked if [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
-     */
     truthy: z.string(),
   },
   { description: "Run JS code" }
@@ -39,7 +42,7 @@ export type JSScriptEval = {
   args?: string;
 };
 /** @ignore */
-export const JSScriptEval = z.object(
+const JSScriptEval = z.object(
   {
     ...__type("JSScriptEval"),
     js_file: z.string({ description: "Nodejs process" }),
@@ -51,7 +54,7 @@ export const JSScriptEval = z.object(
 exactMatch<JSEval, ReturnType<typeof JSEval.parse>>();
 export type JSEval = JSCodeEval | JSScriptEval;
 /** @ignore */
-export const JSEval = z.union([JSCodeEval, JSScriptEval]);
+const JSEval = z.union([JSCodeEval, JSScriptEval]);
 
 exactMatch<StringConstant, ReturnType<typeof StringConstant.parse>>();
 export type StringConstant = string;
@@ -120,6 +123,19 @@ export const OpsMainSchema = z.object({
   prop1: ComparbleString,
   prop2: ComparbleString,
 });
+
+export const zodExport = {
+  JSCodeEval,
+  JSScriptEval,
+  JSEval,
+  StrinEnum,
+  StringConstant,
+  StringProcess,
+  StringRegex,
+  StringValidate,
+  ComparbleString,
+  OpsMainSchema,
+};
 
 /* return match(result)
   .with({ type: 'error' }, () => `<p>Oups! An error occured</p>`)
