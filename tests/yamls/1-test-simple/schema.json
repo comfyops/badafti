@@ -19,12 +19,12 @@
                                                     "const": "__JSCodeEval",
                                                     "default": "__JSCodeEval"
                                                 },
-                                                "js_inline": {
+                                                "truthy": {
                                                     "type": "string"
                                                 }
                                             },
                                             "required": [
-                                                "js_inline"
+                                                "truthy"
                                             ],
                                             "additionalProperties": false,
                                             "description": "Run JS code"
@@ -48,14 +48,10 @@
                                             "description": "Run JS from file (.js)"
                                         }
                                     ]
-                                },
-                                "value": {
-                                    "type": "string"
                                 }
                             },
                             "required": [
-                                "check",
-                                "value"
+                                "check"
                             ],
                             "additionalProperties": false
                         },

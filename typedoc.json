@@ -1,11 +1,18 @@
 {
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": ["src/schema/ops/ops-main-schema.ts"],
+    "plugin": ["typedoc-plugin-extras"],
+    
     "out": "docs",
-    "includeVersion": true,
     "cleanOutputDir": true,
+    
+    "searchInComments": true,
+
+    "includeVersion": true,
+    
     "categorizeByGroup": true,
     "disableSources": false,
     "pretty": true,
-    "searchInComments": true
+    
+    "footerLastModified": true,
 }

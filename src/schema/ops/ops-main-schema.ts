@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { match, P } from "ts-pattern";
 
 export function __type(name: string) {
   return {
@@ -9,37 +10,23 @@ export function __type(name: string) {
   };
 }
 
-/**
- * This is not a \@tag. Nor is this an \{\@inlineTag\}
- *
- * It is possible to escape the end of a comment:
- * ```ts
- * /**
- *  * docs for `example()`
- *  *\/
- * function example(): void
- * ```
- *
- * * 1
- * * 2
- *
- * so:
- *
- * 1. sss
- * 2. sss
- *     * dsads
- *
- * see {@link __type}
- */
-
+/** {@link JSCodeEval} */
 export const JSCodeEval = z.object(
   {
     ...__type("JSCodeEval"),
-    js_inline: z.string(),
+
+    /** @field Trurhy2 */
+    truthy: z.string(),
   },
   { description: "Run JS code" }
 );
+/**
+ * @description `truthy` A string expression that will be evaluated
+ *     and checked if [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
+ */
+export interface JSCodeEval extends z.infer<typeof JSCodeEval> {}
 
+/** @ignore */
 const JSScriptEval = z.object(
   {
     js_file: z.string({ description: "Nodejs process" }),
@@ -48,16 +35,20 @@ const JSScriptEval = z.object(
   { description: "Run JS from file (.js)" }
 );
 
-const JSEval = z.union([JSCodeEval, JSScriptEval]);
+/** @ignore */
+export const JSEval = z.union([JSCodeEval, JSScriptEval]);
+export type JSEval = z.infer<typeof JSCodeEval | typeof JSScriptEval>;
 
+/** @ignore */
 const StringConstant = z.string();
 
+/** @ignore */
 const StringValidate = z.object({
   check: JSEval,
-  value: z.string(),
 });
 
 /**
+ * @ignore
  * Process the value befor using it
  */
 const StringProcess = z.object({
@@ -65,12 +56,15 @@ const StringProcess = z.object({
   input: z.string(),
 });
 
+/** @ignore */
 const StringRegex = z.object({
   regex: z.string(),
 });
 
+/** @ignore */
 const StrinEnum = z.array(z.string());
 
+/** @ignore */
 const ComparbleString = z.union([
   StringValidate,
   StringConstant,
@@ -79,8 +73,15 @@ const ComparbleString = z.union([
 ]);
 type ComparbleString = z.infer<typeof JSEval>;
 
+/** @ignore */
 export const OpsMainSchema = z.object({
   prop1: ComparbleString,
   prop2: ComparbleString,
 });
-export type OpsMainSchema = z.infer<typeof OpsMainSchema>;
+export interface OpsMainSchema extends z.infer<typeof OpsMainSchema> {}
+
+/* return match(result)
+  .with({ type: 'error' }, () => `<p>Oups! An error occured</p>`)
+  .with({ type: 'ok', data: { type: 'text' } }, (res) => `<p>${res.data.content}</p>`)
+  .with({ type: 'ok', data: { type: 'img', src: P.select() } }, (src) => `<img src=${src} />`)
+  .exhaustive(); */
