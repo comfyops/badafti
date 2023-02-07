@@ -56,12 +56,11 @@ TerraformBOM:
     flavour:
       - "docker" # disables other (1 of many)
       - "lowcost" # make variable required
-    dev_overwrites:
+    
+    overwrites: # that the dev compare must succeed
       - throttle:
           validate: "utils.StrictInt(x) && (x>0) && (x<100)"
           default: 100
-    ops_overwrites:
-      X: "Y"
 
 flowX: 
   on: "trigger"
