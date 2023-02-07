@@ -3,4 +3,4 @@
 prop1: 
   check: 
     truthy: "true"
-prop2: "123"
+prop2: {regex: "^cool"}
